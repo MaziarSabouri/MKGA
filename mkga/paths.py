@@ -18,8 +18,13 @@ def resolve_data_root(cli_value: Optional[str] = None) -> str:
     env = os.environ.get("MKGA_DATA_ROOT")
     if env:
         return os.path.abspath(env)
+    # Auto-detect when MKGA lives beside Dataset/ (e.g. MultiTaskNet/MKGA + MultiTaskNet/Dataset)
+    candidate = REPO_ROOT.parent
+    if (candidate / "Dataset").is_dir():
+        return str(candidate.resolve())
     raise ValueError(
-        "Data root not set. Pass --data_root or set the MKGA_DATA_ROOT environment variable."
+        "Data root not set. Pass --data_root, set MKGA_DATA_ROOT, or place Dataset/ "
+        f"next to the MKGA repo (expected at {candidate / 'Dataset'})."
     )
 
 

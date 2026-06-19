@@ -84,8 +84,9 @@ Results are written to `results/` as CSV files (`*_seg.csv`, `*_tirads.csv`, `*_
 
 ## Batch scripts
 
+Scripts auto-detect `Dataset/` in the parent of the MKGA repo (same as `train.py`), or you can set `MKGA_DATA_ROOT` explicitly:
+
 ```bash
-export MKGA_DATA_ROOT=/path/to/MultiTaskNet
 bash scripts/run_train.sh
 bash scripts/run_test.sh
 bash scripts/run_ablations.sh

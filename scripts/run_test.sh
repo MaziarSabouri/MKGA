@@ -1,19 +1,21 @@
 #!/bin/bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$ROOT"
-
-if [ -z "${MKGA_DATA_ROOT:-}" ]; then
-    echo "ERROR: Set MKGA_DATA_ROOT to the directory containing Dataset/"
-    exit 1
-fi
+# shellcheck source=common.sh
+source "$SCRIPT_DIR/common.sh"
+resolve_mkga_data_root
+init_experiment_paths
 
 resnet_models=("ResNet34" "ResNet34_MKGA" "ResNet34_ResMKGA")
 sam_models=("SAM" "SAM_MKGA" "SAM_ResMKGA")
 datasets=("ThyroidXL" "DDTI")
-FRACTION=1.0
 LORA_RANKS=(4 16 32)
+
+echo "Evaluating checkpoints in $CHECKPOINT_DIR (Frac${TRAIN_FRACTION})"
+echo "Test data fraction: $TEST_FRACTION"
 
 run_test() {
     local model_name=$1
@@ -31,7 +33,8 @@ run_test() {
             --model "$model_name" \
             --test_on "$dataset" \
             --path "$checkpoint_path" \
-            --fraction "$FRACTION" \
+            --output_dir "$RESULTS_DIR" \
+            --fraction "$TEST_FRACTION" \
             --binary_tirads True \
             --use_masks False \
             --lora_rank "$rank" \
@@ -40,14 +43,14 @@ run_test() {
 }
 
 for model in "${resnet_models[@]}"; do
-    run_test "$model" "checkpoints/${model}_Frac${FRACTION}.pth" 0
-    run_test "$model" "checkpoints/${model}_Frozen_Frac${FRACTION}.pth" 0
+    run_test "$model" "${CHECKPOINT_DIR}/${model}_Frac${TRAIN_FRACTION}.pth" 0
+    run_test "$model" "${CHECKPOINT_DIR}/${model}_Frozen_Frac${TRAIN_FRACTION}.pth" 0
 done
 
 for model in "${sam_models[@]}"; do
-    run_test "$model" "checkpoints/${model}_Frac${FRACTION}.pth" 0
+    run_test "$model" "${CHECKPOINT_DIR}/${model}_Frac${TRAIN_FRACTION}.pth" 0
     for rank in "${LORA_RANKS[@]}"; do
-        run_test "$model" "checkpoints/${model}_LoRa_Rank${rank}_Frac${FRACTION}.pth" "$rank"
+        run_test "$model" "${CHECKPOINT_DIR}/${model}_LoRa_Rank${rank}_Frac${TRAIN_FRACTION}.pth" "$rank"
     done
 done
 
