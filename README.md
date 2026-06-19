@@ -51,6 +51,8 @@ $MKGA_DATA_ROOT/
 
 Alternatively, pass `--data_root /path/to/parent` on every command.
 
+For the full JSON schema, field definitions, and label encoding rules, see **[docs/DATA_FORMAT.md](docs/DATA_FORMAT.md)**.
+
 ## Training
 
 ```bash
