@@ -1,6 +1,12 @@
-# MKGA: Multi-Kernel Gated Attention for Thyroid Multi-Task Learning
+# Multi-Kernel Gated Decoder Adapters for Robust Multi-Task Thyroid Ultrasound
 
-Official implementation for simultaneous thyroid nodule **segmentation**, **TIRADS classification**, and **anatomical position** prediction.
+Official PyTorch implementation of **MKGA** for simultaneous thyroid nodule **segmentation**, **TIRADS classification**, and **anatomical position** prediction under cross-center shift.
+
+**Paper:** [arXiv:2603.08906](https://arxiv.org/abs/2603.08906)
+
+<p align="center">
+  <img src="images/architecture.png" alt="MKGA architecture overview" width="90%">
+</p>
 
 ## Project structure
 
@@ -11,6 +17,8 @@ MKGA/
 │   ├── paths.py           # Path helpers
 │   ├── models/            # ResNet34, MedSAM, and MKGA variants
 │   └── optim/             # PCGrad optimizer wrapper
+├── images/                # Figures for documentation
+├── docs/                  # Dataset format specification
 ├── train.py               # Training entry point
 ├── test.py                # Evaluation entry point
 ├── scripts/               # Batch experiment runners
@@ -92,6 +100,32 @@ bash scripts/run_test.sh
 bash scripts/run_ablations.sh
 ```
 
+Override ablation training length:
+
+```bash
+ABLATION_EPOCHS=100 ABLATION_PATIENCE=15 bash scripts/run_ablations.sh
+```
+
 ## Citation
 
-If you use this code, please cite our paper (details to be added upon publication).
+If you use this code, please cite:
+
+```bibtex
+@misc{sabouri2026multikernelgateddecoderadapters,
+      title={Multi-Kernel Gated Decoder Adapters for Robust Multi-Task Thyroid Ultrasound under Cross-Center Shift},
+      author={Maziar Sabouri and Nourhan Bayasi and Arman Rahmim},
+      year={2026},
+      eprint={2603.08906},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.08906},
+}
+```
+
+## License
+
+This project is released under the [MIT License](LICENSE).
+
+MIT is a permissive open-source license: others may use, modify, and redistribute the code (including in commercial projects) as long as the copyright notice and license text are preserved. It is a common choice for academic ML research code published alongside a paper.
+
+If your institution requires a different policy (e.g. non-commercial or GPL), replace `LICENSE` accordingly before public release.
