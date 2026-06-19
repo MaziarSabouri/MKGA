@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Model checkpoints / weights
+checkpoints/
+weights/*.pth
+
+# Results and artifacts
+results/
+pairwise_results/
+test_results/
+visualization_results/
+
+# Environment
+.venv/
+venv/
+.env
