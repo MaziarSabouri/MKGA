@@ -18,7 +18,7 @@ def resolve_data_root(cli_value: Optional[str] = None) -> str:
     env = os.environ.get("MKGA_DATA_ROOT")
     if env:
         return os.path.abspath(env)
-    # Auto-detect when MKGA lives beside Dataset/ (e.g. MultiTaskNet/MKGA + MultiTaskNet/Dataset)
+    # Auto-detect when MKGA lives beside Dataset/ in the parent directory
     candidate = REPO_ROOT.parent
     if (candidate / "Dataset").is_dir():
         return str(candidate.resolve())

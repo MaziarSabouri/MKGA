@@ -42,10 +42,16 @@ Download [MedSAM ViT-B](https://github.com/bowang-lab/MedSAM) weights to `weight
 
 ## Data layout
 
-Set `MKGA_DATA_ROOT` to the directory that contains a `Dataset/` folder:
+Set `MKGA_DATA_ROOT` to the directory that **contains** a `Dataset/` folder (not the `Dataset/` folder itself):
+
+```bash
+export MKGA_DATA_ROOT=/path/to/your/data
+```
+
+Example layout:
 
 ```
-$MKGA_DATA_ROOT/
+/path/to/your/data/
 └── Dataset/
     ├── ThyroidXL/
     │   ├── stats/id2info_eng_clean.json
@@ -64,8 +70,6 @@ For the full JSON schema, field definitions, and label encoding rules, see **[do
 ## Training
 
 ```bash
-export MKGA_DATA_ROOT=/path/to/MultiTaskNet
-
 python train.py \
   --model ResNet34_MKGA \
   --source ThyroidXL \
@@ -92,9 +96,10 @@ Results are written to `results/` as CSV files (`*_seg.csv`, `*_tirads.csv`, `*_
 
 ## Batch scripts
 
-Scripts auto-detect `Dataset/` in the parent of the MKGA repo (same as `train.py`), or you can set `MKGA_DATA_ROOT` explicitly:
+Scripts auto-detect `Dataset/` in the parent of the MKGA repo when `MKGA_DATA_ROOT` is unset. You can also set it explicitly:
 
 ```bash
+export MKGA_DATA_ROOT=/path/to/your/data
 bash scripts/run_train.sh
 bash scripts/run_test.sh
 bash scripts/run_ablations.sh
@@ -124,8 +129,8 @@ If you use this code, please cite:
 
 ## License
 
-This project is released under the [MIT License](LICENSE).
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
-MIT is a permissive open-source license: others may use, modify, and redistribute the code (including in commercial projects) as long as the copyright notice and license text are preserved. It is a common choice for academic ML research code published alongside a paper.
+The MIT License is a highly permissive open-source license. You are free to use, modify, and redistribute this code (including for commercial purposes), provided that the original copyright notice and license text are included. It is a standard choice for academic ML research code.
 
-If your institution requires a different policy (e.g. non-commercial or GPL), replace `LICENSE` accordingly before public release.
+*Note for contributors/collaborators: If your institution requires a different policy (e.g., non-commercial or GPL), please ensure the LICENSE file is updated accordingly before public release.*
