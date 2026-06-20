@@ -126,11 +126,3 @@ If you use this code, please cite:
       url={https://arxiv.org/abs/2603.08906},
 }
 ```
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-The MIT License is a highly permissive open-source license. You are free to use, modify, and redistribute this code (including for commercial purposes), provided that the original copyright notice and license text are included. It is a standard choice for academic ML research code.
-
-*Note for contributors/collaborators: If your institution requires a different policy (e.g., non-commercial or GPL), please ensure the LICENSE file is updated accordingly before public release.*
