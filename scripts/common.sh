@@ -14,7 +14,7 @@ resolve_mkga_data_root() {
         return 0
     fi
 
-    # Auto-detect: parent of MKGA repo contains Dataset/ (e.g. MultiTaskNet/MKGA + MultiTaskNet/Dataset)
+    # Auto-detect: parent of MKGA repo contains Dataset/
     local candidate
     candidate="$(cd "${ROOT}/.." && pwd)"
     if [ -d "${candidate}/Dataset" ]; then
