@@ -1,8 +1,10 @@
 # Multi-Kernel Gated Decoder Adapters for Robust Multi-Task Thyroid Ultrasound
 
-Official PyTorch implementation of **MKGA** for simultaneous thyroid nodule **segmentation**, **TIRADS classification**, and **anatomical position** prediction under cross-center shift.
+[![arXiv](https://img.shields.io/badge/arXiv-2603.08906-b31b1b.svg)](https://doi.org/10.48550/arXiv.2603.08906)
+[![MICCAI 2026](https://img.shields.io/badge/MICCAI-2026%20Accepted-4ea94b)](https://doi.org/10.48550/arXiv.2603.08906)
+[![License](https://img.shields.io/github/license/MaziarSabouri/MKGA)](LICENSE)
 
-**Paper:** [arXiv:2603.08906](https://arxiv.org/abs/2603.08906)
+Official PyTorch implementation of **MKGA** for simultaneous thyroid nodule **segmentation**, **TIRADS classification**, and **anatomical position** prediction under cross-center shift.
 
 <p align="center">
   <img src="images/architecture.png" alt="MKGA architecture overview" width="90%">
