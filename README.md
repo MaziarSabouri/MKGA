@@ -6,6 +6,8 @@
 
 Official PyTorch implementation of **MKGA** for simultaneous thyroid nodule **segmentation**, **TIRADS classification**, and **anatomical position** prediction under cross-center shift.
 
+**Model weights:** Pre-trained checkpoints from the paper are available upon request.
+
 <p align="center">
   <img src="images/architecture.png" alt="MKGA architecture overview" width="90%">
 </p>
